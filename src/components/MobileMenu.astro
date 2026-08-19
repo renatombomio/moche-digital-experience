@@ -1,0 +1,243 @@
+---
+---
+
+<nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu__inner">
+
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__brand">Moche</span>
+
+      <button
+        class="mobile-menu__close"
+        type="button"
+        aria-label="Close menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu__content">
+      <ul class="mobile-menu__links">
+        <li>
+          <a href="/menu">Menu</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
+        <li>
+          <a href="/experience">Experience</a>
+        </li>
+        <li>
+          <a href="/visit">Visit</a>
+        </li>
+      </ul>
+
+      <div class="mobile-menu__divider" aria-hidden="true">
+        <span></span>
+        <span class="mobile-menu__symbol">◇</span>
+        <span></span>
+      </div>
+
+      <a class="mobile-menu__booking" href="/booking">
+        Book a table
+      </a>
+
+      <a
+        class="mobile-menu__instagram"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menu = document.querySelector<HTMLElement>("#mobile-menu");
+  const closeButton =
+    menu?.querySelector<HTMLButtonElement>(".mobile-menu__close");
+
+  const openButton =
+    document.querySelector<HTMLButtonElement>(".menu-button");
+
+  if (menu && closeButton && openButton) {
+    const openMenu = () => {
+      menu.setAttribute("aria-hidden", "false");
+      openButton.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+
+      closeButton.focus();
+    };
+
+    const closeMenu = () => {
+      menu.setAttribute("aria-hidden", "true");
+      openButton.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+
+      openButton.focus();
+    };
+
+    openButton.addEventListener("click", openMenu);
+    closeButton.addEventListener("click", closeMenu);
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menu.getAttribute("aria-hidden") === "false") {
+        closeMenu();
+      }
+    });
+  }
+</script>
+
+<style>
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--color-cream);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--duration-base) var(--ease-standard),
+      transform var(--duration-base) var(--ease-standard),
+      visibility var(--duration-base);
+  }
+
+  .mobile-menu[aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-menu__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem var(--mobile-gutter);
+  }
+
+  .mobile-menu__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+  }
+
+  .mobile-menu__brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
+  .mobile-menu__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-dark);
+    cursor: pointer;
+  }
+
+  .mobile-menu__close span {
+    position: absolute;
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .mobile-menu__close span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu__close span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .mobile-menu__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 4rem;
+  }
+
+  .mobile-menu__links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mobile-menu__links a {
+    display: block;
+    font-size: clamp(2rem, 10vw, 3rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .mobile-menu__divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 3rem 0;
+  }
+
+  .mobile-menu__divider span:first-child,
+  .mobile-menu__divider span:last-child {
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+  }
+
+  .mobile-menu__symbol {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  .mobile-menu__booking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    border: 1px solid var(--color-brown);
+    border-radius: var(--radius-button);
+    background: var(--color-brown);
+    color: var(--color-cream);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobile-menu__instagram {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu {
+      transition: none;
+    }
+  }
+</style>
