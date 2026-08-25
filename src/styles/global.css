@@ -54,6 +54,11 @@ a {
   display: none;
 }
 
+/* The Chargrilled Octopus photo has a little more white margin than the other cards. */
+.food-card:nth-child(4) .food-card__image img {
+  transform: scale(1.08) !important;
+}
+
 ::selection {
   background: var(--color-clay);
   color: var(--color-cream);
