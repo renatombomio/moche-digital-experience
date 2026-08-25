@@ -127,12 +127,6 @@ const drinks = [
 
   <!-- =========================================
        INTRO / TRANSITION
-
-       LET'S MAKE IT WILD
-              ↓
-          SVG DRAW
-              ↓
-       PISCO EXPERIENCE
   ========================================= -->
 
   <div class="pisco-experience__intro">
@@ -165,7 +159,6 @@ const drinks = [
 
       <!-- =====================================
            SVG MOTIF
-           SAME PATTERN AS FOOD EXPERIENCE
       ===================================== -->
 
       <div
@@ -631,12 +624,6 @@ const drinks = [
 
   /* =========================================
      PISCO INTRO TRANSITION
-
-     LET'S MAKE IT WILD
-             ↓
-          SVG DRAW
-             ↓
-       PISCO EXPERIENCE
   ========================================= */
 
   if (
@@ -1238,6 +1225,10 @@ const drinks = [
   );
 
 
+  /* =========================================
+     INITIAL STATE
+  ========================================= */
+
   requestAnimationFrame(
     () => {
 
@@ -1718,7 +1709,7 @@ const drinks = [
     3;
 
   min-height:
-    48svh;
+    27svh;
 
   overflow:
     hidden;
@@ -1731,7 +1722,7 @@ const drinks = [
     relative;
 
   min-height:
-    48svh;
+    27svh;
 
   display:
     flex;
@@ -1772,7 +1763,7 @@ const drinks = [
     center;
 
   padding:
-    2rem;
+    1.5rem;
 
   text-align:
     center;
@@ -1792,13 +1783,13 @@ const drinks = [
 .pisco-experience__eyebrow {
 
   margin-bottom:
-    0.7rem;
+    0.55rem;
 
   color:
     var(--pisco-gold);
 
   font-size:
-    0.56rem;
+    0.5rem;
 
   font-weight:
     700;
@@ -1821,9 +1812,9 @@ const drinks = [
 
   font-size:
     clamp(
-      3rem,
-      10vw,
-      6rem
+      2.7rem,
+      6vw,
+      4.8rem
     );
 
   font-weight:
@@ -1868,10 +1859,10 @@ const drinks = [
     3;
 
   width:
-    min(
-      42vw,
-      280px
-    );
+    210px;
+
+  max-width:
+    210px;
 
   aspect-ratio:
     1;
@@ -1909,10 +1900,16 @@ const drinks = [
     none;
 
   stroke:
-    var(--pisco-cream);
+    var(--pisco-gold);
 
   stroke-width:
-    1.2;
+    1.5;
+
+  stroke-linecap:
+    square;
+
+  stroke-linejoin:
+    miter;
 
   vector-effect:
     non-scaling-stroke;
@@ -1921,11 +1918,8 @@ const drinks = [
 
 .pisco-motif-line--accent {
 
-  stroke:
-    var(--pisco-gold);
-
   stroke-width:
-    1.8;
+    2;
 }
 
 
@@ -1944,7 +1938,7 @@ const drinks = [
   padding:
     1rem
     0
-    6rem;
+    3.5rem;
 }
 
 
@@ -1964,23 +1958,23 @@ const drinks = [
     flex;
 
   gap:
-    3rem;
+    2rem;
 
   overflow-x:
     auto;
 
   padding:
-    1rem
+    0.75rem
     max(
       8vw,
       calc(
         (
           100vw -
-          1100px
+          900px
         ) / 2
       )
     )
-    2rem;
+    1.25rem;
 
   scroll-snap-type:
     x mandatory;
@@ -2012,8 +2006,8 @@ const drinks = [
   flex:
     0 0
     min(
-      72vw,
-      560px
+      62vw,
+      430px
     );
 
   scroll-snap-align:
@@ -2132,13 +2126,13 @@ const drinks = [
     absolute;
 
   right:
-    1.5rem;
+    1.2rem;
 
   bottom:
-    1.5rem;
+    1.2rem;
 
   left:
-    1.5rem;
+    1.2rem;
 
   z-index:
     2;
@@ -2154,13 +2148,13 @@ const drinks = [
     block;
 
   margin-bottom:
-    0.4rem;
+    0.35rem;
 
   color:
     var(--pisco-gold);
 
   font-size:
-    0.55rem;
+    0.5rem;
 
   font-weight:
     700;
@@ -2175,9 +2169,6 @@ const drinks = [
 
 .pisco-card h2 {
 
-  max-width:
-    90%;
-
   margin:
     0;
 
@@ -2186,16 +2177,16 @@ const drinks = [
 
   font-size:
     clamp(
-      2.7rem,
-      5vw,
-      5rem
+      2.3rem,
+      4vw,
+      4rem
     );
 
   font-weight:
     900;
 
   line-height:
-    0.84;
+    0.82;
 
   letter-spacing:
     -0.065em;
@@ -2209,7 +2200,7 @@ const drinks = [
       0,
       0,
       0,
-      0.72
+      0.65
     );
 }
 
@@ -2217,10 +2208,10 @@ const drinks = [
 .pisco-card p {
 
   max-width:
-    25rem;
+    22rem;
 
   margin:
-    0.8rem 0 0;
+    0.6rem 0 0;
 
   color:
     rgba(
@@ -2231,10 +2222,10 @@ const drinks = [
     );
 
   font-size:
-    0.9rem;
+    0.78rem;
 
   line-height:
-    1.45;
+    1.4;
 
   text-shadow:
     0 2px 10px
@@ -2242,7 +2233,7 @@ const drinks = [
       0,
       0,
       0,
-      0.72
+      0.7
     );
 }
 
@@ -2256,16 +2247,16 @@ const drinks = [
     center;
 
   gap:
-    0.45rem;
+    0.4rem;
 
   margin-top:
-    1rem;
+    0.75rem;
 
   color:
-    var(--pisco-gold);
+    var(--pisco-cream);
 
   font-size:
-    0.62rem;
+    0.55rem;
 
   font-weight:
     700;
@@ -2289,22 +2280,22 @@ const drinks = [
 
   width:
     min(
-      84vw,
-      1100px
+      78vw,
+      900px
     );
 
   height:
     1px;
 
   margin:
-    1rem auto 0;
+    0.75rem auto 0;
 
   background:
     rgba(
       245,
       242,
       234,
-      0.2
+      0.22
     );
 }
 
@@ -2333,6 +2324,9 @@ const drinks = [
     translateY(
       -0.5px
     );
+
+  will-change:
+    width;
 }
 
 
@@ -2344,12 +2338,12 @@ const drinks = [
 
   width:
     min(
-      84vw,
-      1100px
+      78vw,
+      900px
     );
 
   margin:
-    4rem auto 0;
+    2.2rem auto 0;
 
   text-align:
     center;
@@ -2359,18 +2353,18 @@ const drinks = [
 .pisco-experience__full-menu p {
 
   margin:
-    0 0 1rem;
+    0 0 0.75rem;
 
   color:
     rgba(
       245,
       242,
       234,
-      0.62
+      0.58
     );
 
   font-size:
-    0.8rem;
+    0.72rem;
 
   letter-spacing:
     0.08em;
@@ -2389,11 +2383,11 @@ const drinks = [
     space-between;
 
   min-width:
-    220px;
+    200px;
 
   padding:
-    1rem
-    1.25rem;
+    0.85rem
+    1.1rem;
 
   border:
     1px solid
@@ -2411,7 +2405,7 @@ const drinks = [
     none;
 
   font-size:
-    0.7rem;
+    0.62rem;
 
   font-weight:
     700;
@@ -2424,8 +2418,7 @@ const drinks = [
 
   transition:
     background 200ms ease,
-    color 200ms ease,
-    border-color 200ms ease;
+    color 200ms ease;
 }
 
 
@@ -2836,24 +2829,41 @@ body.modal-open {
   .pisco-experience__intro {
 
     min-height:
-      42svh;
+      24svh;
   }
 
 
   .pisco-experience__intro-stage {
 
     min-height:
-      42svh;
+      24svh;
   }
 
 
   .pisco-experience__motif {
 
     width:
-      55vw;
+      125px;
 
     max-width:
-      220px;
+      125px;
+  }
+
+
+  .pisco-experience__message {
+
+    padding:
+      1rem;
+  }
+
+
+  .pisco-experience__eyebrow {
+
+    margin-bottom:
+      0.4rem;
+
+    font-size:
+      0.44rem;
   }
 
 
@@ -2861,58 +2871,84 @@ body.modal-open {
 
     font-size:
       clamp(
-        2.5rem,
-        9vw,
-        3.6rem
+        2rem,
+        8vw,
+        3rem
       );
   }
 
 
+  /* =====================================
+     MENU — SAME SIZE AS FOOD EXPERIENCE
+  ===================================== */
+
   .pisco-experience__menu {
 
     padding:
-      1rem
+      0.75rem
       0
-      4rem;
+      2.5rem;
   }
 
+
+  /* =====================================
+     CAROUSEL
+  ===================================== */
 
   .pisco-carousel__track {
 
     gap:
-      1rem;
+      0.75rem;
 
     padding:
-      0.5rem
-      8vw
-      1.5rem;
+      0.4rem
+      10vw
+      0.9rem;
   }
 
+
+  /* =====================================
+     CARD
+  ===================================== */
 
   .pisco-card {
 
     flex-basis:
-      82vw;
+      68vw;
   }
 
 
   .pisco-card__image {
 
     aspect-ratio:
-      4 / 5;
+      4 / 4.5;
   }
 
+
+  /* =====================================
+     CARD CONTENT
+  ===================================== */
 
   .pisco-card__content {
 
     right:
-      1rem;
+      0.8rem;
 
     bottom:
-      1rem;
+      0.8rem;
 
     left:
-      1rem;
+      0.8rem;
+  }
+
+
+  .pisco-card__eyebrow {
+
+    margin-bottom:
+      0.25rem;
+
+    font-size:
+      0.44rem;
   }
 
 
@@ -2920,9 +2956,9 @@ body.modal-open {
 
     font-size:
       clamp(
-        2.4rem,
-        10vw,
-        3.6rem
+        2rem,
+        8.5vw,
+        3rem
       );
   }
 
@@ -2930,19 +2966,46 @@ body.modal-open {
   .pisco-card p {
 
     max-width:
-      18rem;
+      15rem;
+
+    margin-top:
+      0.45rem;
 
     font-size:
-      0.78rem;
+      0.66rem;
+
+    line-height:
+      1.35;
   }
 
+
+  .pisco-card__discover {
+
+    margin-top:
+      0.55rem;
+
+    font-size:
+      0.46rem;
+  }
+
+
+  /* =====================================
+     PROGRESS
+  ===================================== */
 
   .pisco-experience__progress {
 
     width:
-      84vw;
+      78vw;
+
+    margin-top:
+      0.35rem;
   }
 
+
+  /* =====================================
+     FULL MENU
+  ===================================== */
 
   .pisco-experience__full-menu {
 
@@ -2950,11 +3013,39 @@ body.modal-open {
       auto;
 
     margin:
-      3rem
+      1.5rem
       1rem
       0;
   }
 
+
+  .pisco-experience__full-menu p {
+
+    margin-bottom:
+      0.6rem;
+
+    font-size:
+      0.62rem;
+  }
+
+
+  .pisco-experience__menu-button {
+
+    min-width:
+      190px;
+
+    padding:
+      0.75rem
+      1rem;
+
+    font-size:
+      0.55rem;
+  }
+
+
+  /* =====================================
+     MODAL
+  ===================================== */
 
   .pisco-modal__dialog {
 
@@ -3017,34 +3108,48 @@ body.modal-open {
 
 @media (max-width: 380px) {
 
+  .pisco-experience__intro {
+
+    min-height:
+      23svh;
+  }
+
+
+  .pisco-experience__intro-stage {
+
+    min-height:
+      23svh;
+  }
+
+
   .pisco-experience__motif {
 
     width:
-      50vw;
+      115px;
 
     max-width:
-      190px;
+      115px;
   }
 
 
   .pisco-card {
 
     flex-basis:
-      84vw;
+      70vw;
   }
 
 
   .pisco-card h2 {
 
     font-size:
-      2.3rem;
+      2.2rem;
   }
 
 
   .pisco-card p {
 
     font-size:
-      0.72rem;
+      0.62rem;
   }
 
 }

@@ -1,0 +1,2175 @@
+---
+const reviews = [
+  {
+    quote:
+      "Great food, true flavours, fantastic menu, nice atmosphere and dedicated and friendly staff.",
+    author: "Michel D.",
+    rating: "10/10",
+  },
+  {
+    quote:
+      "La comida estaba deliciosa y el servicio fue más que excelente.",
+    author: "Andrea S.",
+    rating: "10/10",
+  },
+  {
+    quote:
+      "Very good pisco, food was delicious, felt like I was back in Peru.",
+    author: "Thomas C.",
+    rating: "10/10",
+  },
+];
+
+const theForkUrl =
+  "https://www.thefork.com/restaurant/moche-peruvian-cuisine-pisco-bar-r810879/reviews";
+---
+
+<section
+  class="reviews"
+  aria-labelledby="reviews-title"
+>
+
+  <!-- =====================================================
+       HORIZONTAL VIEWPORT
+  ====================================================== -->
+
+  <div
+    class="reviews__viewport"
+    data-reviews-viewport
+  >
+
+    <div
+      class="reviews__track"
+      data-reviews-track
+    >
+
+      <!-- =================================================
+           PANEL 01 — RATING
+      ================================================== -->
+
+      <article
+        class="reviews__panel reviews__panel--rating"
+        data-review-panel
+      >
+
+        <div class="reviews__panel-inner">
+
+          <div class="reviews__rating-layout">
+
+            <div class="reviews__rating-left">
+
+              <span class="reviews__rating-eyebrow">
+                A well kept secret.
+              </span>
+
+              <h2 id="reviews-title">
+                Loved by our<br />
+                guests.
+              </h2>
+
+              <div class="reviews__main-score">
+
+                <div class="reviews__score-row">
+
+                  <span class="reviews__score-number">
+                    9.8
+                  </span>
+
+                  <span class="reviews__score-out">
+                    /10
+                  </span>
+
+                </div>
+
+                <span class="reviews__score-source">
+                  TheFork guest rating
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="reviews__secondary-scores">
+
+              <div class="reviews__category">
+                <strong>9.6</strong>
+                <span>Food</span>
+              </div>
+
+              <div class="reviews__category">
+                <strong>9.4</strong>
+                <span>Service</span>
+              </div>
+
+              <div class="reviews__category">
+                <strong>9.1</strong>
+                <span>Atmosphere</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =================================================
+           PANELS 02–04 — REVIEWS
+      ================================================== -->
+
+      {reviews.map((review) => (
+
+        <article
+          class="reviews__panel reviews__panel--review"
+          data-review-panel
+        >
+
+          <div class="reviews__panel-inner">
+
+            <div class="reviews__review-content">
+
+              <div
+                class="reviews__stars"
+                aria-label="5 out of 5 stars"
+              >
+                <span aria-hidden="true">★</span>
+                <span aria-hidden="true">★</span>
+                <span aria-hidden="true">★</span>
+                <span aria-hidden="true">★</span>
+                <span aria-hidden="true">★</span>
+              </div>
+
+              <blockquote>
+                “{review.quote}”
+              </blockquote>
+
+              <footer>
+
+                <span class="reviews__author">
+                  {review.author}
+                </span>
+
+                <span class="reviews__review-source">
+                  TheFork · {review.rating}
+                </span>
+
+              </footer>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      ))}
+
+
+      <!-- =================================================
+           PANEL 05 — THEFORK
+      ================================================== -->
+
+      <article
+        class="reviews__panel reviews__panel--more"
+        data-review-panel
+      >
+
+        <div class="reviews__panel-inner">
+
+          <div class="reviews__more-content">
+
+            <span class="reviews__eyebrow">
+              Verified guest reviews
+            </span>
+
+            <h2>
+              Read more<br />
+              from our guests.
+            </h2>
+
+            <a
+              href={theForkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="reviews__link"
+            >
+
+              <span>
+                Read reviews on TheFork
+              </span>
+
+              <span aria-hidden="true">
+                ↗
+              </span>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       BOTTOM NAVIGATION
+  ====================================================== -->
+
+  <div class="reviews__bottom">
+
+    <div class="reviews__progress">
+
+      <span class="reviews__progress-track">
+        <span class="reviews__progress-fill"></span>
+      </span>
+
+      <span class="reviews__progress-label">
+
+        <span class="reviews__progress-current">
+          01
+        </span>
+
+        <span>—</span>
+
+        <span>05</span>
+
+      </span>
+
+    </div>
+
+
+    <span class="reviews__bottom-label">
+
+      Slide to see more
+
+      <span aria-hidden="true">
+        →
+      </span>
+
+    </span>
+
+  </div>
+
+</section>
+
+
+<script>
+  import gsap from "gsap";
+
+  const viewport =
+    document.querySelector<HTMLElement>(
+      "[data-reviews-viewport]"
+    );
+
+  const panels =
+    Array.from(
+      document.querySelectorAll<HTMLElement>(
+        "[data-review-panel]"
+      )
+    );
+
+  const currentCounter =
+    document.querySelector<HTMLElement>(
+      ".reviews__progress-current"
+    );
+
+  const progressFill =
+    document.querySelector<HTMLElement>(
+      ".reviews__progress-fill"
+    );
+
+
+  if (
+    viewport &&
+    panels.length
+  ) {
+
+    let rafId = 0;
+
+    let isDragging = false;
+
+    let dragStartX = 0;
+
+    let scrollStart = 0;
+
+    let hasMoved = false;
+
+    let lastPanel = -1;
+
+
+    /* =====================================================
+       PANEL ANIMATION
+    ====================================================== */
+
+    const animatePanel = (
+      panel: HTMLElement,
+      progress: number
+    ) => {
+
+      const content =
+        panel.querySelector<HTMLElement>(
+          ".reviews__panel-inner"
+        );
+
+      if (!content) {
+        return;
+      }
+
+
+      const distance =
+        Math.max(
+          -1,
+          Math.min(
+            1,
+            progress
+          )
+        );
+
+      const absDistance =
+        Math.abs(distance);
+
+
+      gsap.set(
+        content,
+        {
+          opacity:
+            1 -
+            absDistance * 0.5,
+
+          y:
+            distance * -18,
+
+          scale:
+            1 -
+            absDistance * 0.025,
+        }
+      );
+
+    };
+
+
+    /* =====================================================
+       UPDATE
+    ====================================================== */
+
+    const update = () => {
+
+      rafId = 0;
+
+
+      const maxScroll =
+        viewport.scrollWidth -
+        viewport.clientWidth;
+
+      const scroll =
+        viewport.scrollLeft;
+
+
+      const globalProgress =
+        maxScroll > 0
+          ? scroll / maxScroll
+          : 0;
+
+
+      /* PROGRESS */
+
+      if (progressFill) {
+
+        gsap.set(
+          progressFill,
+          {
+            scaleX:
+              Math.max(
+                0,
+                Math.min(
+                  1,
+                  globalProgress
+                )
+              ),
+          }
+        );
+
+      }
+
+
+      /* ACTIVE PANEL */
+
+      const panelWidth =
+        viewport.clientWidth;
+
+      const activeIndex =
+        Math.min(
+          panels.length - 1,
+          Math.max(
+            0,
+            Math.round(
+              scroll /
+              panelWidth
+            )
+          )
+        );
+
+
+      if (
+        activeIndex !== lastPanel
+      ) {
+
+        lastPanel =
+          activeIndex;
+
+
+        if (currentCounter) {
+
+          currentCounter.textContent =
+            String(
+              activeIndex + 1
+            ).padStart(
+              2,
+              "0"
+            );
+
+        }
+
+      }
+
+
+      /* PANEL TRANSITIONS */
+
+      panels.forEach(
+        (
+          panel,
+          index
+        ) => {
+
+          const panelStart =
+            index *
+            panelWidth;
+
+          const panelProgress =
+            (
+              scroll -
+              panelStart
+            ) /
+            panelWidth;
+
+          animatePanel(
+            panel,
+            panelProgress
+          );
+
+        }
+      );
+
+    };
+
+
+    const requestUpdate = () => {
+
+      if (rafId) {
+        return;
+      }
+
+      rafId =
+        requestAnimationFrame(
+          update
+        );
+
+    };
+
+
+    /* =====================================================
+       HORIZONTAL SCROLL
+    ====================================================== */
+
+    viewport.addEventListener(
+      "scroll",
+      requestUpdate,
+      {
+        passive: true,
+      }
+    );
+
+
+    /* =====================================================
+       DRAG
+    ====================================================== */
+
+    viewport.addEventListener(
+      "pointerdown",
+      (event) => {
+
+        if (
+          event.pointerType === "mouse" &&
+          event.button !== 0
+        ) {
+          return;
+        }
+
+
+        isDragging =
+          true;
+
+        hasMoved =
+          false;
+
+        dragStartX =
+          event.clientX;
+
+        scrollStart =
+          viewport.scrollLeft;
+
+
+        viewport.classList.add(
+          "is-dragging"
+        );
+
+
+        viewport.setPointerCapture(
+          event.pointerId
+        );
+
+      }
+    );
+
+
+    viewport.addEventListener(
+      "pointermove",
+      (event) => {
+
+        if (!isDragging) {
+          return;
+        }
+
+
+        const distance =
+          event.clientX -
+          dragStartX;
+
+
+        if (
+          Math.abs(distance) > 6
+        ) {
+
+          hasMoved =
+            true;
+
+        }
+
+
+        viewport.scrollLeft =
+          scrollStart -
+          distance;
+
+      }
+    );
+
+
+    const stopDragging = () => {
+
+      if (!isDragging) {
+        return;
+      }
+
+
+      isDragging =
+        false;
+
+      viewport.classList.remove(
+        "is-dragging"
+      );
+
+    };
+
+
+    viewport.addEventListener(
+      "pointerup",
+      stopDragging
+    );
+
+    viewport.addEventListener(
+      "pointercancel",
+      stopDragging
+    );
+
+    viewport.addEventListener(
+      "lostpointercapture",
+      stopDragging
+    );
+
+
+    /* =====================================================
+       PREVENT CLICK AFTER DRAG
+    ====================================================== */
+
+    viewport.addEventListener(
+      "click",
+      (event) => {
+
+        if (hasMoved) {
+
+          event.preventDefault();
+
+          event.stopPropagation();
+
+          hasMoved =
+            false;
+
+        }
+
+      },
+      true
+    );
+
+
+    /* =====================================================
+       INITIAL
+    ====================================================== */
+
+    requestUpdate();
+
+
+    /* =====================================================
+       RESIZE
+    ====================================================== */
+
+    window.addEventListener(
+      "resize",
+      requestUpdate,
+      {
+        passive: true,
+      }
+    );
+
+
+    /* =====================================================
+       CLEANUP
+    ====================================================== */
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+
+        cancelAnimationFrame(
+          rafId
+        );
+
+        viewport.removeEventListener(
+          "scroll",
+          requestUpdate
+        );
+
+        window.removeEventListener(
+          "resize",
+          requestUpdate
+        );
+
+      },
+      {
+        once: true,
+      }
+    );
+
+  }
+</script>
+
+
+<style>
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.reviews {
+
+  --reviews-text:
+    #fffdf7;
+
+  position:
+    relative;
+
+  width:
+    100%;
+
+  height:
+    62vh;
+
+  min-height:
+    500px;
+
+  overflow:
+    hidden;
+
+  background:
+    var(--color-brown);
+
+  color:
+    var(--reviews-text);
+}
+
+
+/* =========================================================
+   VIEWPORT
+========================================================= */
+
+.reviews__viewport {
+
+  position:
+    relative;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  overflow-x:
+    auto;
+
+  overflow-y:
+    hidden;
+
+  scrollbar-width:
+    none;
+
+  scroll-snap-type:
+    x mandatory;
+
+  overscroll-behavior-x:
+    contain;
+
+  cursor:
+    grab;
+
+  touch-action:
+    pan-x pan-y;
+
+  -webkit-overflow-scrolling:
+    touch;
+}
+
+
+.reviews__viewport::-webkit-scrollbar {
+  display:
+    none;
+}
+
+
+.reviews__viewport.is-dragging {
+
+  cursor:
+    grabbing;
+
+  scroll-snap-type:
+    none;
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.reviews__track {
+
+  display:
+    flex;
+
+  width:
+    max-content;
+
+  height:
+    100%;
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.reviews__panel {
+
+  position:
+    relative;
+
+  width:
+    100vw;
+
+  height:
+    100%;
+
+  flex:
+    0 0 100vw;
+
+  scroll-snap-align:
+    start;
+
+  scroll-snap-stop:
+    always;
+}
+
+
+/* =========================================================
+   PANEL INNER
+========================================================= */
+
+.reviews__panel-inner {
+
+  position:
+    relative;
+
+  width:
+    min(
+      1100px,
+      84vw
+    );
+
+  height:
+    100%;
+
+  margin:
+    0 auto;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   RATING LAYOUT
+========================================================= */
+
+.reviews__rating-layout {
+
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  transform:
+    translateY(
+      -50%
+    );
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.15fr
+    )
+    minmax(
+      280px,
+      0.6fr
+    );
+
+  min-height:
+    360px;
+
+  border-top:
+    1px solid
+    rgba(
+      255,
+      253,
+      247,
+      0.28
+    );
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      253,
+      247,
+      0.28
+    );
+}
+
+
+/* =========================================================
+   LEFT
+========================================================= */
+
+.reviews__rating-left {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    space-between;
+
+  padding:
+    1.25rem
+    3rem
+    1.25rem
+    0;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.reviews__rating-eyebrow {
+
+  color:
+    var(--color-moche-gold);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.68rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.2em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.reviews__rating-left h2 {
+
+  max-width:
+    700px;
+
+  margin:
+    auto 0;
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      4.5rem,
+      6.8vw,
+      7.5rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    0.8;
+
+  letter-spacing:
+    -0.08em;
+
+  text-wrap:
+    balance;
+}
+
+
+/* =========================================================
+   MAIN SCORE
+========================================================= */
+
+.reviews__main-score {
+
+  margin-top:
+    1rem;
+}
+
+
+.reviews__score-row {
+
+  display:
+    flex;
+
+  align-items:
+    baseline;
+
+  white-space:
+    nowrap;
+}
+
+
+.reviews__score-number {
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      4.2rem,
+      5.8vw,
+      6.5rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    0.7;
+
+  letter-spacing:
+    -0.08em;
+}
+
+
+.reviews__score-out {
+
+  margin-left:
+    0.35rem;
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.85rem;
+
+  font-weight:
+    500;
+}
+
+
+/* =========================================================
+   THEFORK LABEL
+========================================================= */
+
+.reviews__score-source {
+
+  display:
+    block;
+
+  margin-top:
+    0.5rem;
+
+  color:
+    var(--color-moche-gold);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.62rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   SECONDARY SCORES
+========================================================= */
+
+.reviews__secondary-scores {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  border-left:
+    1px solid
+    rgba(
+      255,
+      253,
+      247,
+      0.28
+    );
+}
+
+
+.reviews__category {
+
+  flex:
+    1;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  padding:
+    0
+    2.2rem;
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      253,
+      247,
+      0.22
+    );
+}
+
+
+.reviews__category:last-child {
+  border-bottom:
+    0;
+}
+
+
+.reviews__category strong {
+
+  color:
+    var(--color-moche-gold);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      2.8rem,
+      4vw,
+      4.4rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    0.8;
+
+  letter-spacing:
+    -0.07em;
+}
+
+
+.reviews__category span {
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    clamp(
+      0.8rem,
+      1vw,
+      1.05rem
+    );
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   REVIEW CONTENT
+========================================================= */
+
+.reviews__review-content {
+
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  left:
+    2%;
+
+  width:
+    min(
+      760px,
+      70%
+    );
+
+  transform:
+    translateY(
+      -50%
+    );
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.reviews__stars {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    0.35rem;
+
+  margin-bottom:
+    1.4rem;
+
+  color:
+    var(--color-moche-gold);
+
+  font-size:
+    clamp(
+      1.4rem,
+      1.8vw,
+      2rem
+    );
+
+  line-height:
+    1;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.reviews__review-content blockquote {
+
+  max-width:
+    760px;
+
+  margin:
+    0;
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      2.5rem,
+      3.8vw,
+      4.2rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.045em;
+}
+
+
+/* =========================================================
+   REVIEW FOOTER
+========================================================= */
+
+.reviews__review-content footer {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    flex-start;
+
+  gap:
+    0.35rem;
+
+  margin-top:
+    1.7rem;
+}
+
+
+/* =========================================================
+   AUTHOR
+========================================================= */
+
+.reviews__author {
+
+  color:
+    var(--color-moche-gold);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    1rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   REVIEW SOURCE
+========================================================= */
+
+.reviews__review-source {
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.58rem;
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+
+  opacity:
+    0.8;
+}
+
+
+/* =========================================================
+   THEFORK PANEL
+========================================================= */
+
+.reviews__more-content {
+
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  left:
+    0;
+
+  transform:
+    translateY(
+      -50%
+    );
+}
+
+
+.reviews__more-content h2 {
+
+  max-width:
+    700px;
+
+  margin:
+    0.8rem 0
+    1.6rem;
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      4rem,
+      6vw,
+      6.5rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    0.82;
+
+  letter-spacing:
+    -0.075em;
+}
+
+
+.reviews__eyebrow {
+
+  color:
+    var(--color-moche-gold);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.65rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.reviews__link {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.8rem;
+
+  padding-bottom:
+    0.6rem;
+
+  border-bottom:
+    2px solid
+    var(--color-moche-gold);
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.65rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.reviews__link span:last-child {
+
+  color:
+    var(--color-moche-gold);
+
+  font-size:
+    1.2rem;
+
+  transition:
+    transform
+    250ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.reviews__link:hover span:last-child {
+
+  transform:
+    translate(
+      5px,
+      -5px
+    );
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
+.reviews__bottom {
+
+  position:
+    absolute;
+
+  z-index:
+    10;
+
+  left:
+    50%;
+
+  bottom:
+    1.25rem;
+
+  width:
+    min(
+      1100px,
+      84vw
+    );
+
+  transform:
+    translateX(
+      -50%
+    );
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.reviews__progress {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+}
+
+
+.reviews__progress-track {
+
+  position:
+    relative;
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    3px;
+
+  margin-bottom:
+    0.55rem;
+
+  overflow:
+    hidden;
+
+  background:
+    rgba(
+      255,
+      253,
+      247,
+      0.35
+    );
+}
+
+
+.reviews__progress-fill {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    left;
+
+  background:
+    var(--color-moche-gold);
+
+  will-change:
+    transform;
+}
+
+
+.reviews__progress-label {
+
+  display:
+    flex;
+
+  gap:
+    0.4rem;
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.52rem;
+
+  letter-spacing:
+    0.14em;
+}
+
+
+.reviews__progress-current {
+
+  color:
+    var(--color-moche-gold);
+}
+
+
+/* =========================================================
+   SLIDE INSTRUCTION
+========================================================= */
+
+.reviews__bottom-label {
+
+  position:
+    absolute;
+
+  right:
+    0;
+
+  bottom:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.6rem;
+
+  color:
+    var(--reviews-text);
+
+  font-family:
+    var(--font-body);
+
+  font-size:
+    0.55rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.reviews__bottom-label span {
+
+  color:
+    var(--color-moche-gold);
+
+  font-size:
+    1.15rem;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 1100px
+) and (
+  min-width: 768px
+) {
+
+  .reviews {
+    height:
+      60vh;
+  }
+
+
+  .reviews__panel-inner {
+    width:
+      88vw;
+  }
+
+
+  .reviews__rating-layout {
+    min-height:
+      340px;
+  }
+
+
+  .reviews__rating-left {
+    padding-right:
+      2rem;
+  }
+
+
+  .reviews__category {
+    padding:
+      0
+      1.5rem;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 767px
+) {
+
+  .reviews {
+
+    height:
+      68svh;
+
+    min-height:
+      460px;
+  }
+
+
+  .reviews__panel-inner {
+
+    width:
+      84vw;
+  }
+
+
+  /* RATING */
+
+  .reviews__rating-layout {
+
+    top:
+      48%;
+
+    width:
+      100%;
+
+    grid-template-columns:
+      1fr;
+
+    min-height:
+      0;
+  }
+
+
+  .reviews__rating-left {
+
+    padding:
+      0
+      0
+      1.1rem;
+  }
+
+
+  .reviews__rating-eyebrow {
+
+    font-size:
+      0.52rem;
+  }
+
+
+  .reviews__rating-left h2 {
+
+    max-width:
+      100%;
+
+    margin:
+      0.8rem 0
+      1.4rem;
+
+    font-size:
+      clamp(
+        3.3rem,
+        13vw,
+        5rem
+      );
+
+    line-height:
+      0.8;
+  }
+
+
+  /* SCORE */
+
+  .reviews__main-score {
+    margin-top:
+      0;
+  }
+
+
+  .reviews__score-number {
+
+    font-size:
+      clamp(
+        4rem,
+        17vw,
+        5.5rem
+      );
+  }
+
+
+  .reviews__score-out {
+    font-size:
+      0.65rem;
+  }
+
+
+  .reviews__score-source {
+
+    margin-top:
+      0.45rem;
+
+    font-size:
+      0.48rem;
+  }
+
+
+  /* SECONDARY RATINGS */
+
+  .reviews__secondary-scores {
+
+    display:
+      grid;
+
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+
+    border-top:
+      1px solid
+      rgba(
+        255,
+        253,
+        247,
+        0.25
+      );
+
+    border-left:
+      0;
+  }
+
+
+  .reviews__category {
+
+    min-height:
+      76px;
+
+    padding:
+      0
+      0.6rem;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      0.25rem;
+
+    border-right:
+      1px solid
+      rgba(
+        255,
+        253,
+        247,
+        0.2
+      );
+
+    border-bottom:
+      0;
+  }
+
+
+  .reviews__category:last-child {
+    border-right:
+      0;
+  }
+
+
+  .reviews__category strong {
+
+    font-size:
+      clamp(
+        2rem,
+        8vw,
+        2.8rem
+      );
+  }
+
+
+  .reviews__category span {
+
+    font-size:
+      0.5rem;
+
+    letter-spacing:
+      0.08em;
+  }
+
+
+  /* REVIEW */
+
+  .reviews__review-content {
+
+    top:
+      50%;
+
+    left:
+      6%;
+
+    width:
+      88%;
+
+    transform:
+      translateY(
+        -50%
+      );
+  }
+
+
+  .reviews__stars {
+
+    justify-content:
+      center;
+
+    margin-bottom:
+      1.25rem;
+
+    font-size:
+      1.55rem;
+  }
+
+
+  .reviews__review-content blockquote {
+
+    font-size:
+      clamp(
+        1.75rem,
+        7vw,
+        2.35rem
+      );
+
+    line-height:
+      1.02;
+
+    letter-spacing:
+      -0.04em;
+  }
+
+
+  .reviews__review-content footer {
+
+    margin-top:
+      1.45rem;
+  }
+
+
+  .reviews__author {
+
+    font-size:
+      0.9rem;
+
+    letter-spacing:
+      0.13em;
+  }
+
+
+  .reviews__review-source {
+    font-size:
+      0.5rem;
+  }
+
+
+  /* THEFORK */
+
+  .reviews__more-content {
+
+    width:
+      90%;
+  }
+
+
+  .reviews__more-content h2 {
+
+    font-size:
+      clamp(
+        3.4rem,
+        13vw,
+        4.8rem
+      );
+  }
+
+
+  /* BOTTOM */
+
+  .reviews__bottom {
+
+    bottom:
+      0.9rem;
+
+    width:
+      84vw;
+  }
+
+
+  .reviews__progress-track {
+
+    height:
+      3px;
+
+    margin-bottom:
+      0.55rem;
+  }
+
+
+  .reviews__progress-label {
+
+    font-size:
+      0.48rem;
+  }
+
+
+  .reviews__bottom-label {
+
+    font-size:
+      0.46rem;
+
+    letter-spacing:
+      0.08em;
+  }
+
+
+  .reviews__bottom-label span {
+
+    font-size:
+      0.95rem;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (
+  max-width: 380px
+) {
+
+  .reviews {
+
+    height:
+      66svh;
+
+    min-height:
+      440px;
+  }
+
+
+  .reviews__rating-left h2 {
+
+    font-size:
+      3.5rem;
+  }
+
+
+  .reviews__score-number {
+
+    font-size:
+      4rem;
+  }
+
+
+  .reviews__category {
+
+    min-height:
+      70px;
+  }
+
+
+  .reviews__category strong {
+
+    font-size:
+      1.8rem;
+  }
+
+
+  .reviews__review-content blockquote {
+
+    font-size:
+      1.7rem;
+  }
+
+
+  .reviews__author {
+
+    font-size:
+      0.78rem;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .reviews__viewport {
+
+    scroll-snap-type:
+      none;
+  }
+
+}
+</style>

@@ -2,26 +2,26 @@
 const slides = [
   {
     src: "/images/hero/food.jpg",
-    alt: "Moche Peruvian cuisine",
   },
   {
     src: "/images/hero/craft.jpg",
-    alt: "Moche kitchen and culinary craft",
   },
   {
     src: "/images/hero/pisco.jpg",
-    alt: "Pisco cocktail at Moche",
   },
   {
     src: "/images/hero/experience.jpg",
-    alt: "Moche restaurant experience",
   },
 ];
 ---
 
-<section class="hero" aria-label="Moche introduction">
+<section class="hero" aria-labelledby="hero-title">
 
-  <div class="hero__images" aria-hidden="true">
+  <!-- =========================================
+       BACKGROUND IMAGES
+  ========================================= -->
+
+  <div class="hero__media" aria-hidden="true">
     {slides.map((slide, index) => (
       <img
         class:list={[
@@ -32,44 +32,69 @@ const slides = [
         alt=""
         loading={index === 0 ? "eager" : "lazy"}
         decoding="async"
+        fetchpriority={index === 0 ? "high" : "auto"}
       />
     ))}
   </div>
 
 
-  <!-- Permanent image contrast -->
+  <!-- =========================================
+       IMAGE CONTRAST
+  ========================================= -->
+
   <div
     class="hero__overlay"
     aria-hidden="true"
   ></div>
 
 
-  <!-- Final scroll transition -->
+  <!-- =========================================
+       SCROLL TO BLACK TRANSITION
+  ========================================= -->
+
   <div
-    class="hero__scroll-transition"
+    class="hero__transition"
     aria-hidden="true"
   ></div>
 
 
-  <!-- Hero content -->
+  <!-- =========================================
+       HERO CONTENT
+  ========================================= -->
+
   <div class="hero__content">
 
     <div class="hero__statement">
-      <h1>Moche</h1>
+
+      <h1 id="hero-title">
+        Moche
+      </h1>
 
       <p>
-        Peruvian Cuisine &amp; Pisco Bar
+        Peruvian cuisine &amp; pisco
+        <span>in Amsterdam</span>
       </p>
+
     </div>
 
+
+    <!-- =========================================
+         PRIMARY CTA
+    ========================================= -->
 
     <a
       class="hero__cta"
       href="/booking"
+      aria-label="Book a table at Moche"
     >
-      <span>Book a table</span>
+      <span class="hero__cta-label">
+        Book a table
+      </span>
 
-      <span aria-hidden="true">
+      <span
+        class="hero__cta-arrow"
+        aria-hidden="true"
+      >
         →
       </span>
     </a>
@@ -77,12 +102,17 @@ const slides = [
   </div>
 
 
-  <!-- Scroll indicator -->
+  <!-- =========================================
+       SCROLL INDICATOR
+  ========================================= -->
+
   <div
     class="hero__scroll"
     aria-hidden="true"
   >
-    <span>Scroll</span>
+    <span class="hero__scroll-label">
+      Scroll
+    </span>
 
     <span class="hero__scroll-line"></span>
   </div>
@@ -98,8 +128,11 @@ const slides = [
 
 
   /* =========================================
-     IMAGE SLIDESHOW
+     ELEMENTS
   ========================================= */
+
+  const hero =
+    document.querySelector<HTMLElement>(".hero");
 
   const images = Array.from(
     document.querySelectorAll<HTMLImageElement>(
@@ -107,155 +140,214 @@ const slides = [
     )
   );
 
-  let currentIndex = 0;
+  const content =
+    document.querySelector<HTMLElement>(
+      ".hero__content"
+    );
 
-  const changeSlide = () => {
+  const transition =
+    document.querySelector<HTMLElement>(
+      ".hero__transition"
+    );
+
+  const scrollIndicator =
+    document.querySelector<HTMLElement>(
+      ".hero__scroll"
+    );
+
+
+  /* =========================================
+     REDUCED MOTION
+  ========================================= */
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+
+  /* =========================================
+     IMAGE SLIDESHOW
+  ========================================= */
+
+  let currentIndex = 0;
+  let slideshowTimer: number | undefined;
+
+
+  const showSlide = (nextIndex: number) => {
     if (images.length < 2) return;
 
     images[currentIndex].classList.remove(
       "is-active"
     );
 
-    currentIndex =
-      (currentIndex + 1) % images.length;
+    currentIndex = nextIndex;
 
     images[currentIndex].classList.add(
       "is-active"
     );
   };
 
-  window.setInterval(
-    changeSlide,
-    5000
+
+  const nextSlide = () => {
+    showSlide(
+      (currentIndex + 1) % images.length
+    );
+  };
+
+
+  const startSlideshow = () => {
+    if (
+      images.length < 2 ||
+      reduceMotion.matches ||
+      document.hidden
+    ) {
+      return;
+    }
+
+    if (slideshowTimer !== undefined) {
+      window.clearInterval(slideshowTimer);
+    }
+
+    slideshowTimer = window.setInterval(
+      nextSlide,
+      6000
+    );
+  };
+
+
+  const stopSlideshow = () => {
+    if (slideshowTimer !== undefined) {
+      window.clearInterval(slideshowTimer);
+      slideshowTimer = undefined;
+    }
+  };
+
+
+  /* Pause slideshow when browser tab
+     is not visible. */
+
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      stopSlideshow();
+    } else {
+      startSlideshow();
+    }
+  };
+
+
+  document.addEventListener(
+    "visibilitychange",
+    handleVisibilityChange
   );
 
 
+  reduceMotion.addEventListener(
+    "change",
+    () => {
+      if (reduceMotion.matches) {
+        stopSlideshow();
+      } else {
+        startSlideshow();
+      }
+    }
+  );
+
+
+  startSlideshow();
+
+
   /* =========================================
-     HERO → BLACK TRANSITION
+     HERO SCROLL TRANSITION
   ========================================= */
-
-  const hero =
-    document.querySelector(".hero");
-
-  const transition =
-    document.querySelector(
-      ".hero__scroll-transition"
-    );
-
-  const content =
-    document.querySelector(
-      ".hero__content"
-    );
-
-  const scrollIndicator =
-    document.querySelector(
-      ".hero__scroll"
-    );
-
-
-  const reduceMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
 
   if (
     hero &&
-    transition &&
     content &&
+    transition &&
     scrollIndicator &&
-    !reduceMotion
+    !reduceMotion.matches
   ) {
 
-    /*
-     * The hero stays visually unchanged
-     * during the majority of its height.
-     *
-     * The black transition only begins when
-     * the bottom of the hero approaches the
-     * viewport.
-     */
-
-    gsap.fromTo(
-      transition,
-      {
-        opacity: 0,
+    const heroTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "bottom 82%",
+        end: "bottom 15%",
+        scrub: 1.4,
+        invalidateOnRefresh: true,
       },
-      {
-        opacity: 1,
-
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: hero,
-
-          start: "bottom 85%",
-
-          end: "bottom top",
-
-          scrub: 1.5,
-
-          invalidateOnRefresh: true,
-        },
-      }
-    );
+    });
 
 
     /*
-     * Hero content leaves progressively
-     * during the final part of the hero.
+     * Content leaves first.
      */
 
-    gsap.to(
+    heroTimeline.to(
       content,
       {
         opacity: 0,
-
-        y: -25,
-
+        y: -32,
         ease: "none",
-
-        scrollTrigger: {
-          trigger: hero,
-
-          start: "bottom 70%",
-
-          end: "bottom 25%",
-
-          scrub: 1,
-
-          invalidateOnRefresh: true,
-        },
-      }
+        duration: 0.45,
+      },
+      0
     );
 
 
     /*
-     * Scroll indicator disappears slightly
-     * before the hero reaches its end.
+     * Scroll indicator disappears
+     * slightly before the content.
      */
 
-    gsap.to(
+    heroTimeline.to(
       scrollIndicator,
       {
         opacity: 0,
-
         ease: "none",
+        duration: 0.2,
+      },
+      0
+    );
 
-        scrollTrigger: {
-          trigger: hero,
 
-          start: "bottom 75%",
+    /*
+     * Black gradually takes over
+     * the lower part of the hero.
+     */
 
-          end: "bottom 45%",
-
-          scrub: 1,
-
-          invalidateOnRefresh: true,
-        },
-      }
+    heroTimeline.to(
+      transition,
+      {
+        opacity: 1,
+        ease: "none",
+        duration: 0.75,
+      },
+      0.2
     );
   }
+
+
+  /* =========================================
+     CLEANUP
+  ========================================= */
+
+  document.addEventListener(
+    "astro:before-swap",
+    () => {
+      stopSlideshow();
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+
+      ScrollTrigger.getAll().forEach(
+        (trigger) => trigger.kill()
+      );
+    },
+    { once: true }
+  );
 </script>
 
 
@@ -267,68 +359,67 @@ const slides = [
 
   .hero {
     position: relative;
-
     min-height: 100svh;
 
     overflow: hidden;
 
     background: var(--color-dark);
-
     color: var(--color-white);
+
+    isolation: isolate;
   }
 
 
   /* =========================================
-     IMAGE CONTAINER
+     MEDIA
   ========================================= */
 
-  .hero__images {
+  .hero__media {
     position: absolute;
-
     inset: 0;
+
+    z-index: 0;
   }
 
-
-  /* =========================================
-     HERO IMAGES
-  ========================================= */
 
   .hero__image {
     position: absolute;
-
     inset: 0;
 
     width: 100%;
     height: 100%;
 
     object-fit: cover;
-
     object-position: center;
 
     opacity: 0;
 
-    transform: scale(1.02);
+    transform: scale(1.035);
 
     transition:
-      opacity 1.2s ease,
-      transform 7s ease;
+      opacity 1400ms
+        cubic-bezier(.22, 1, .36, 1),
+      transform 8000ms
+        cubic-bezier(.22, 1, .36, 1);
+
+    will-change:
+      opacity,
+      transform;
   }
 
 
   .hero__image.is-active {
     opacity: 1;
-
     transform: scale(1);
   }
 
 
   /* =========================================
-     PERMANENT IMAGE OVERLAY
+     IMAGE OVERLAY
   ========================================= */
 
   .hero__overlay {
     position: absolute;
-
     inset: 0;
 
     z-index: 1;
@@ -336,14 +427,10 @@ const slides = [
     background:
       linear-gradient(
         to bottom,
-
-        rgba(0, 0, 0, 0.34) 0%,
-
-        rgba(0, 0, 0, 0.05) 35%,
-
-        rgba(0, 0, 0, 0.08) 55%,
-
-        rgba(0, 0, 0, 0.58) 100%
+        rgba(0, 0, 0, 0.38) 0%,
+        rgba(0, 0, 0, 0.06) 38%,
+        rgba(0, 0, 0, 0.12) 62%,
+        rgba(0, 0, 0, 0.62) 100%
       );
 
     pointer-events: none;
@@ -351,12 +438,11 @@ const slides = [
 
 
   /* =========================================
-     FINAL BLACK TRANSITION
+     BLACK TRANSITION
   ========================================= */
 
-  .hero__scroll-transition {
+  .hero__transition {
     position: absolute;
-
     inset: 0;
 
     z-index: 2;
@@ -366,13 +452,9 @@ const slides = [
     background:
       linear-gradient(
         to bottom,
-
         rgba(0, 0, 0, 0) 0%,
-
-        rgba(0, 0, 0, 0.02) 50%,
-
-        rgba(0, 0, 0, 0.35) 75%,
-
+        rgba(0, 0, 0, 0.08) 45%,
+        rgba(0, 0, 0, 0.55) 78%,
         rgba(0, 0, 0, 1) 100%
       );
 
@@ -383,7 +465,7 @@ const slides = [
 
 
   /* =========================================
-     HERO CONTENT
+     CONTENT
   ========================================= */
 
   .hero__content {
@@ -392,75 +474,88 @@ const slides = [
     z-index: 3;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
 
     min-height: 100svh;
 
     padding:
-      6rem
+      7rem
       var(--mobile-gutter)
-      4rem;
+      5rem;
 
     text-align: center;
 
     will-change:
-      transform,
-      opacity;
+      opacity,
+      transform;
   }
 
 
   /* =========================================
-     HERO STATEMENT
+     STATEMENT
   ========================================= */
 
   .hero__statement {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
 
   .hero__statement h1 {
     margin: 0;
 
+    /*
+     * Designed for the new modern
+     * sans-serif display typeface.
+     */
+
     font-size:
       clamp(
-        4.5rem,
-        22vw,
-        7rem
+        5.25rem,
+        19vw,
+        11rem
       );
 
-    font-weight: 700;
+    font-weight: 500;
 
-    line-height: 0.8;
+    line-height: 0.82;
 
-    letter-spacing: -0.07em;
+    letter-spacing: -0.065em;
+
+    /*
+     * Keep natural casing.
+     * The final decision depends
+     * on the chosen brand typeface.
+     */
+    text-transform: none;
+    font-family: var(--font-display);
+  }
+
+
+  .hero__statement p {
+    max-width: 20rem;
+
+    margin: 1.75rem 0 0;
+
+    font-size: 0.72rem;
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.14em;
 
     text-transform: uppercase;
   }
 
 
-  .hero__statement p {
-    max-width: 18rem;
-
-    margin: 1.5rem 0 0;
-
-    font-size: 0.8rem;
-
-    line-height: 1.5;
-
-    letter-spacing: 0.12em;
-
-    text-transform: uppercase;
+  .hero__statement p span {
+    display: block;
   }
 
 
@@ -472,51 +567,78 @@ const slides = [
     display: inline-flex;
 
     align-items: center;
-
     justify-content: space-between;
 
-    width: 100%;
+    width: fit-content;
 
-    min-height: 56px;
+    min-width: 190px;
 
-    padding: 0 1.25rem;
+    min-height: 52px;
+
+    padding:
+      0 1rem;
 
     border:
       1px solid
-      rgba(255, 255, 255, 0.7);
+      rgba(255, 255, 255, 0.72);
 
     color: var(--color-white);
 
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 
-    font-weight: 600;
+    font-weight: 500;
 
-    letter-spacing: 0.1em;
+    letter-spacing: 0.13em;
 
     text-transform: uppercase;
 
-    backdrop-filter: blur(4px);
-
     transition:
-      background-color 200ms ease,
-      color 200ms ease;
+      background-color 350ms
+        cubic-bezier(.22, 1, .36, 1),
+      color 350ms
+        cubic-bezier(.22, 1, .36, 1),
+      border-color 350ms
+        cubic-bezier(.22, 1, .36, 1);
+
+    backdrop-filter: blur(5px);
   }
 
 
-  .hero__cta span:last-child {
-    font-size: 1.2rem;
+  .hero__cta-arrow {
+    margin-left: 2.5rem;
+
+    font-size: 1.1rem;
 
     line-height: 1;
+
+    transition:
+      transform 350ms
+        cubic-bezier(.22, 1, .36, 1);
   }
 
 
-  .hero__cta:hover,
-  .hero__cta:focus-visible {
-    background:
+  .hero__cta:hover {
+    background: var(--color-white);
+
+    border-color:
       var(--color-white);
 
-    color:
-      var(--color-dark);
+    color: var(--color-dark);
+  }
+
+
+  .hero__cta:hover
+  .hero__cta-arrow {
+    transform: translateX(4px);
+  }
+
+
+  .hero__cta:focus-visible {
+    outline:
+      2px solid
+      var(--color-white);
+
+    outline-offset: 5px;
   }
 
 
@@ -528,14 +650,29 @@ const slides = [
     position: absolute;
 
     right: var(--mobile-gutter);
-
     bottom: 2rem;
 
     z-index: 4;
 
     display: none;
 
+    align-items: center;
+    flex-direction: column;
+
+    color: var(--color-white);
+
     will-change: opacity;
+  }
+
+
+  .hero__scroll-label {
+    font-size: 0.62rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
   }
 
 
@@ -543,12 +680,14 @@ const slides = [
     display: block;
 
     width: 1px;
+    height: 2.75rem;
 
-    height: 2.5rem;
+    margin-top: 0.65rem;
 
-    margin-top: 0.5rem;
+    background:
+      currentColor;
 
-    background: currentColor;
+    transform-origin: top;
   }
 
 
@@ -562,42 +701,41 @@ const slides = [
       padding:
         8rem
         3rem
-        3rem;
+        4rem;
     }
 
 
     .hero__statement h1 {
       font-size:
         clamp(
-          7rem,
-          18vw,
+          8rem,
+          17vw,
           13rem
         );
     }
 
 
     .hero__statement p {
-      font-size: 0.9rem;
+      max-width: none;
+
+      font-size: 0.78rem;
+    }
+
+
+    .hero__statement p span {
+      display: inline;
     }
 
 
     .hero__cta {
-      width: fit-content;
+      min-width: 205px;
 
-      min-width: 220px;
-
-      gap: 3rem;
+      min-height: 54px;
     }
 
 
     .hero__scroll {
-      display: block;
-
-      font-size: 0.65rem;
-
-      letter-spacing: 0.12em;
-
-      text-transform: uppercase;
+      display: flex;
     }
   }
 
@@ -609,10 +747,10 @@ const slides = [
   @media (prefers-reduced-motion: reduce) {
 
     .hero__image {
+      transform: none;
+
       transition:
         opacity 300ms ease;
-
-      transform: none;
     }
 
 
@@ -621,8 +759,19 @@ const slides = [
     }
 
 
-    .hero__scroll-transition {
+    .hero__transition {
       opacity: 0;
+    }
+
+
+    .hero__content {
+      transform: none;
+    }
+
+
+    .hero__cta,
+    .hero__cta-arrow {
+      transition: none;
     }
   }
 

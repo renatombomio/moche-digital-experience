@@ -95,6 +95,7 @@ const dishes = [
 <section
   class="food-experience"
   aria-label="Moche food experience"
+  data-dishes={JSON.stringify(dishes)}
 >
 
   <!-- =========================================
@@ -428,6 +429,19 @@ const dishes = [
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const foodSection =
+  document.querySelector<HTMLElement>(
+    ".food-experience"
+  );
+
+const dishesData =
+  foodSection?.dataset.dishes;
+
+const dishes =
+  dishesData
+    ? JSON.parse(dishesData)
+    : [];
+
 
   /* =========================================
      ELEMENTS
@@ -471,9 +485,9 @@ const dishes = [
     );
 
   const carouselTrack =
-    document.querySelector(
-      ".food-carousel__track"
-    );
+  document.querySelector<HTMLElement>(
+    ".food-carousel__track"
+  );
 
   const cards =
     Array.from(
@@ -1006,8 +1020,8 @@ const dishes = [
   ========================================= */
 
   carouselTrack?.addEventListener(
-    "wheel",
-    (event) => {
+  "wheel",
+  (event: WheelEvent) => {
 
       if (
         window.innerWidth < 768
@@ -1115,7 +1129,7 @@ const dishes = [
       modalIngredients.innerHTML =
         dish.ingredients
           .map(
-            (ingredient) =>
+            (ingredient: any) =>
               `<li>${ingredient}</li>`
           )
           .join("");
@@ -1397,7 +1411,7 @@ const dishes = [
 
 
   /* =========================================
-     INTRO
+     INTRO — COMPACT DESKTOP
   ========================================= */
 
   .food-experience__intro {
@@ -1406,7 +1420,7 @@ const dishes = [
 
     z-index: 2;
 
-    min-height: 48svh;
+    min-height: 27svh;
 
     overflow: hidden;
   }
@@ -1416,7 +1430,7 @@ const dishes = [
 
     position: relative;
 
-    min-height: 48svh;
+    min-height: 27svh;
 
     display: flex;
 
@@ -1442,7 +1456,7 @@ const dishes = [
 
     justify-content: center;
 
-    padding: 2rem;
+    padding: 1.5rem;
 
     text-align: center;
 
@@ -1458,12 +1472,12 @@ const dishes = [
 
   .food-experience__eyebrow {
 
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.55rem;
 
     color:
       var(--moche-gold);
 
-    font-size: 0.56rem;
+    font-size: 0.5rem;
 
     font-weight: 700;
 
@@ -1482,9 +1496,9 @@ const dishes = [
 
     font-size:
       clamp(
-        3rem,
-        10vw,
-        6rem
+        2.7rem,
+        6vw,
+        4.8rem
       );
 
     font-weight: 800;
@@ -1502,7 +1516,7 @@ const dishes = [
 
 
   /* =========================================
-     MOTIF
+     MOTIF — COMPACT
   ========================================= */
 
   .food-experience__motif {
@@ -1515,11 +1529,9 @@ const dishes = [
 
     z-index: 3;
 
-    width:
-      min(
-        42vw,
-        280px
-      );
+    width: 210px;
+
+    max-width: 210px;
 
     transform:
       translate(
@@ -1561,7 +1573,7 @@ const dishes = [
 
 
   /* =========================================
-     MENU
+     MENU — COMPACT
   ========================================= */
 
   .food-experience__menu {
@@ -1571,8 +1583,8 @@ const dishes = [
     z-index: 3;
 
     padding:
-      2rem 0
-      6rem;
+      1rem 0
+      3.5rem;
   }
 
 
@@ -1592,19 +1604,19 @@ const dishes = [
 
     display: flex;
 
-    gap: 3rem;
+    gap: 2rem;
 
     overflow-x: auto;
 
     padding:
-      1rem
+      0.75rem
       max(
         8vw,
         calc(
-          (100vw - 1100px) / 2
+          (100vw - 900px) / 2
         )
       )
-      2rem;
+      1.25rem;
 
     scroll-snap-type: x mandatory;
 
@@ -1621,7 +1633,7 @@ const dishes = [
 
 
   /* =========================================
-     CARD
+     CARD — COMPACT DESKTOP
   ========================================= */
 
   .food-card {
@@ -1631,8 +1643,8 @@ const dishes = [
     flex:
       0 0
       min(
-        72vw,
-        560px
+        62vw,
+        430px
       );
 
     scroll-snap-align: center;
@@ -1721,11 +1733,11 @@ const dishes = [
 
     position: absolute;
 
-    right: 1.5rem;
+    right: 1.2rem;
 
-    bottom: 1.5rem;
+    bottom: 1.2rem;
 
-    left: 1.5rem;
+    left: 1.2rem;
 
     z-index: 2;
 
@@ -1738,12 +1750,12 @@ const dishes = [
 
     display: block;
 
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
 
     color:
       var(--moche-gold);
 
-    font-size: 0.55rem;
+    font-size: 0.5rem;
 
     font-weight: 700;
 
@@ -1762,9 +1774,9 @@ const dishes = [
 
     font-size:
       clamp(
-        2.8rem,
-        5vw,
-        5rem
+        2.3rem,
+        4vw,
+        4rem
       );
 
     font-weight: 900;
@@ -1783,10 +1795,10 @@ const dishes = [
 
   .food-card p {
 
-    max-width: 25rem;
+    max-width: 22rem;
 
     margin:
-      0.8rem 0 0;
+      0.6rem 0 0;
 
     color:
       rgba(
@@ -1796,9 +1808,9 @@ const dishes = [
         0.92
       );
 
-    font-size: 0.9rem;
+    font-size: 0.78rem;
 
-    line-height: 1.45;
+    line-height: 1.4;
 
     text-shadow:
       0 2px 10px
@@ -1812,14 +1824,14 @@ const dishes = [
 
     align-items: center;
 
-    gap: 0.45rem;
+    gap: 0.4rem;
 
-    margin-top: 1rem;
+    margin-top: 0.75rem;
 
     color:
       var(--moche-cream);
 
-    font-size: 0.62rem;
+    font-size: 0.55rem;
 
     font-weight: 700;
 
@@ -1839,14 +1851,14 @@ const dishes = [
 
     width:
       min(
-        84vw,
-        1100px
+        78vw,
+        900px
       );
 
     height: 1px;
 
     margin:
-      1rem auto 0;
+      0.75rem auto 0;
 
     background:
       rgba(
@@ -1889,12 +1901,12 @@ const dishes = [
 
     width:
       min(
-        84vw,
-        1100px
+        78vw,
+        900px
       );
 
     margin:
-      4rem auto 0;
+      2.2rem auto 0;
 
     text-align: center;
   }
@@ -1903,7 +1915,7 @@ const dishes = [
   .food-experience__full-menu p {
 
     margin:
-      0 0 1rem;
+      0 0 0.75rem;
 
     color:
       rgba(
@@ -1913,7 +1925,7 @@ const dishes = [
         0.58
       );
 
-    font-size: 0.8rem;
+    font-size: 0.72rem;
 
     letter-spacing: 0.08em;
   }
@@ -1927,10 +1939,10 @@ const dishes = [
 
     justify-content: space-between;
 
-    min-width: 220px;
+    min-width: 200px;
 
     padding:
-      1rem 1.25rem;
+      0.85rem 1.1rem;
 
     border:
       1px solid
@@ -1946,7 +1958,7 @@ const dishes = [
     color:
       var(--moche-cream);
 
-    font-size: 0.7rem;
+    font-size: 0.62rem;
 
     font-weight: 700;
 
@@ -2294,26 +2306,54 @@ const dishes = [
 
 
   /* =========================================
-     MOBILE
+     MOBILE — COMPACT
   ========================================= */
 
   @media (max-width: 767px) {
 
+    /* -----------------------------------------
+       INTRO
+    ----------------------------------------- */
+
     .food-experience__intro {
 
-      min-height: 42svh;
+      min-height: 24svh;
     }
 
 
     .food-experience__intro-stage {
 
-      min-height: 42svh;
+      min-height: 24svh;
     }
 
 
+    /* -----------------------------------------
+       MOTIF
+    ----------------------------------------- */
+
     .food-experience__motif {
 
-      width: 55vw;
+      width: 125px;
+
+      max-width: 125px;
+    }
+
+
+    /* -----------------------------------------
+       INTRO TITLE
+    ----------------------------------------- */
+
+    .food-experience__message {
+
+      padding: 1rem;
+    }
+
+
+    .food-experience__eyebrow {
+
+      margin-bottom: 0.4rem;
+
+      font-size: 0.44rem;
     }
 
 
@@ -2321,52 +2361,76 @@ const dishes = [
 
       font-size:
         clamp(
-          2.5rem,
-          9vw,
-          3.6rem
+          2rem,
+          8vw,
+          3rem
         );
     }
 
 
+    /* -----------------------------------------
+       MENU
+    ----------------------------------------- */
+
     .food-experience__menu {
 
       padding:
-        1rem 0 4rem;
+        0.75rem 0 2.5rem;
     }
 
+
+    /* -----------------------------------------
+       CAROUSEL
+    ----------------------------------------- */
 
     .food-carousel__track {
 
-      gap: 1rem;
+      gap: 0.75rem;
 
       padding:
-        0.5rem
-        8vw
-        1.5rem;
+        0.4rem
+        10vw
+        0.9rem;
     }
 
+
+    /* -----------------------------------------
+       CARD
+    ----------------------------------------- */
 
     .food-card {
 
       flex-basis:
-        82vw;
+        68vw;
     }
 
 
     .food-card__image {
 
       aspect-ratio:
-        4 / 5;
+        4 / 4.5;
     }
 
 
+    /* -----------------------------------------
+       CARD CONTENT
+    ----------------------------------------- */
+
     .food-card__content {
 
-      right: 1rem;
+      right: 0.8rem;
 
-      bottom: 1rem;
+      bottom: 0.8rem;
 
-      left: 1rem;
+      left: 0.8rem;
+    }
+
+
+    .food-card__eyebrow {
+
+      margin-bottom: 0.25rem;
+
+      font-size: 0.44rem;
     }
 
 
@@ -2374,37 +2438,80 @@ const dishes = [
 
       font-size:
         clamp(
-          2.5rem,
-          11vw,
-          3.7rem
+          2rem,
+          8.5vw,
+          3rem
         );
     }
 
 
     .food-card p {
 
-      max-width: 18rem;
+      max-width: 15rem;
 
-      font-size: 0.78rem;
+      margin-top: 0.45rem;
+
+      font-size: 0.66rem;
+
+      line-height: 1.35;
     }
 
+
+    .food-card__discover {
+
+      margin-top: 0.55rem;
+
+      font-size: 0.46rem;
+    }
+
+
+    /* -----------------------------------------
+       PROGRESS
+    ----------------------------------------- */
 
     .food-experience__progress {
 
-      width: 84vw;
+      width: 78vw;
 
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
     }
 
+
+    /* -----------------------------------------
+       FULL MENU
+    ----------------------------------------- */
 
     .food-experience__full-menu {
 
       width: auto;
 
       margin:
-        3rem 1rem 0;
+        1.5rem 1rem 0;
     }
 
+
+    .food-experience__full-menu p {
+
+      margin-bottom: 0.6rem;
+
+      font-size: 0.62rem;
+    }
+
+
+    .food-experience__menu-button {
+
+      min-width: 190px;
+
+      padding:
+        0.75rem 1rem;
+
+      font-size: 0.55rem;
+    }
+
+
+    /* -----------------------------------------
+       MODAL
+    ----------------------------------------- */
 
     .dish-modal__dialog {
 
@@ -2458,24 +2565,44 @@ const dishes = [
 
   @media (max-width: 380px) {
 
+    .food-experience__intro {
+
+      min-height: 23svh;
+    }
+
+
+    .food-experience__intro-stage {
+
+      min-height: 23svh;
+    }
+
+
+    .food-experience__motif {
+
+      width: 115px;
+
+      max-width: 115px;
+    }
+
+
     .food-card {
 
       flex-basis:
-        84vw;
+        70vw;
     }
 
 
     .food-card h3 {
 
       font-size:
-        2.4rem;
+        2.2rem;
     }
 
 
     .food-card p {
 
       font-size:
-        0.72rem;
+        0.62rem;
     }
 
   }

@@ -1,243 +1,2306 @@
----
----
+<nav
+  id="mobile-menu"
+  class="mobile-menu"
+  aria-hidden="true"
+>
 
-<nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <!-- =========================================
+       GEOMETRIC BACKGROUND
+  ========================================= -->
+
+  <div
+    class="mobile-menu__geometry"
+    aria-hidden="true"
+  >
+
+    <svg
+      viewBox="0 0 600 600"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M300 40 L540 180 L540 420 L300 560 L60 420 L60 180 Z"
+      />
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M300 105 L485 212 L485 388 L300 495 L115 388 L115 212 Z"
+      />
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M300 165 L430 240 L430 360 L300 435 L170 360 L170 240 Z"
+      />
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M300 40 L300 165"
+      />
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M300 435 L300 560"
+      />
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M60 300 L170 300"
+      />
+
+      <path
+        class="mobile-menu__geometry-line"
+        d="M430 300 L540 300"
+      />
+
+      <path
+        class="mobile-menu__geometry-line mobile-menu__geometry-line--accent"
+        d="M300 275 L325 300 L300 325 L275 300 Z"
+      />
+
+    </svg>
+
+  </div>
+
+
+  <!-- =========================================
+       INNER
+  ========================================= -->
+
   <div class="mobile-menu__inner">
 
-    <div class="mobile-menu__header">
-      <span class="mobile-menu__brand">Moche</span>
+    <!-- HEADER -->
 
-      <button
-        class="mobile-menu__close"
-        type="button"
-        aria-label="Close menu"
-      >
-        <span></span>
-        <span></span>
-      </button>
-    </div>
+    <header class="mobile-menu__header">
+
+      <span class="mobile-menu__brand">
+        Moche
+      </span>
+
+    </header>
+
+
+    <!-- CONTENT -->
 
     <div class="mobile-menu__content">
-      <ul class="mobile-menu__links">
-        <li>
-          <a href="/menu">Menu</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/experience">Experience</a>
-        </li>
-        <li>
-          <a href="/visit">Visit</a>
-        </li>
-      </ul>
 
-      <div class="mobile-menu__divider" aria-hidden="true">
-        <span></span>
-        <span class="mobile-menu__symbol">◇</span>
-        <span></span>
+      <!-- INTRO -->
+
+      <div class="mobile-menu__intro">
+
+        <span>
+          Moche
+        </span>
+
+        <p>
+          The experience
+        </p>
+
       </div>
 
-      <a class="mobile-menu__booking" href="/booking">
-        Book a table
-      </a>
 
-      <a
-        class="mobile-menu__instagram"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Instagram
-      </a>
+      <!-- NAVIGATION -->
+
+      <ul class="mobile-menu__links">
+
+        <!-- =======================================
+             FOOD
+        ======================================== -->
+
+        <li
+          class="mobile-menu__item mobile-menu__item--food"
+        >
+
+          <button
+            class="mobile-menu__food-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="food-submenu"
+          >
+
+            <span class="mobile-menu__link-label">
+              Food
+            </span>
+
+            <span
+              class="mobile-menu__food-icon"
+              aria-hidden="true"
+            ></span>
+
+          </button>
+
+
+          <!-- FOOD SUBMENU -->
+
+          <ul
+            id="food-submenu"
+            class="mobile-menu__submenu"
+            aria-hidden="true"
+          >
+
+            <li>
+
+              <a href="/menu/lunch">
+
+                <span>
+                  Lunch
+                </span>
+
+                <span aria-hidden="true">
+                  ↗
+                </span>
+
+              </a>
+
+            </li>
+
+
+            <li>
+
+              <a href="/menu/dinner">
+
+                <span>
+                  Dinner
+                </span>
+
+                <span aria-hidden="true">
+                  ↗
+                </span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+
+        <!-- =======================================
+             DRINKS
+        ======================================== -->
+
+        <li class="mobile-menu__item">
+
+          <a
+            href="/drinks"
+            class="mobile-menu__main-link"
+          >
+
+            <span class="mobile-menu__link-label">
+              Drinks
+            </span>
+
+            <span
+              class="mobile-menu__arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </span>
+
+          </a>
+
+        </li>
+
+
+        <!-- =======================================
+             ABOUT US
+        ======================================== -->
+
+        <li class="mobile-menu__item">
+
+          <a
+            href="/about"
+            class="mobile-menu__main-link"
+          >
+
+            <span class="mobile-menu__link-label">
+              About Us
+            </span>
+
+            <span
+              class="mobile-menu__arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </span>
+
+          </a>
+
+        </li>
+
+
+        <!-- =======================================
+             CONTACT
+        ======================================== -->
+
+        <li class="mobile-menu__item">
+
+          <a
+            href="/contact"
+            class="mobile-menu__main-link"
+          >
+
+            <span class="mobile-menu__link-label">
+              Contact
+            </span>
+
+            <span
+              class="mobile-menu__arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </span>
+
+          </a>
+
+        </li>
+
+
+        <!-- =======================================
+             BOOK A TABLE
+        ======================================== -->
+
+        <li
+          class="mobile-menu__item mobile-menu__item--booking"
+        >
+
+          <a
+            href="/booking"
+            class="mobile-menu__main-link mobile-menu__main-link--booking"
+          >
+
+            <span class="mobile-menu__link-label">
+              Book a Table
+            </span>
+
+            <span
+              class="mobile-menu__arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+
+          </a>
+
+        </li>
+
+      </ul>
+
     </div>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="mobile-menu__footer">
+
+      <div
+        class="mobile-menu__divider"
+        aria-hidden="true"
+      >
+
+        <span></span>
+
+        <span class="mobile-menu__symbol">
+          ◇
+        </span>
+
+        <span></span>
+
+      </div>
+
+
+      <div class="mobile-menu__footer-info">
+
+        <a
+          href="https://www.instagram.com/moche_amsterdam/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram ↗
+        </a>
+
+        <span>
+          Amsterdam
+        </span>
+
+      </div>
+
+    </footer>
+
   </div>
+
 </nav>
 
+
 <script>
-  const menu = document.querySelector<HTMLElement>("#mobile-menu");
-  const closeButton =
-    menu?.querySelector<HTMLButtonElement>(".mobile-menu__close");
+  import { gsap } from "gsap";
+
+
+  /* =========================================================
+     ELEMENTS
+  ========================================================= */
+
+  const menu =
+    document.querySelector<HTMLElement>(
+      "#mobile-menu"
+    );
+
 
   const openButton =
-    document.querySelector<HTMLButtonElement>(".menu-button");
+    document.querySelector<HTMLButtonElement>(
+      ".menu-button"
+    );
 
-  if (menu && closeButton && openButton) {
+
+  const foodToggle =
+    menu?.querySelector<HTMLButtonElement>(
+      ".mobile-menu__food-toggle"
+    );
+
+
+  const foodSubmenu =
+    menu?.querySelector<HTMLElement>(
+      ".mobile-menu__submenu"
+    );
+
+
+  const geometry =
+    menu?.querySelector<HTMLElement>(
+      ".mobile-menu__geometry"
+    );
+
+
+  const geometryLines =
+    menu?.querySelectorAll<SVGPathElement>(
+      ".mobile-menu__geometry-line"
+    );
+
+
+  const intro =
+    menu?.querySelector<HTMLElement>(
+      ".mobile-menu__intro"
+    );
+
+
+  const menuItems =
+    menu?.querySelectorAll<HTMLElement>(
+      ".mobile-menu__item"
+    );
+
+
+  const footer =
+    menu?.querySelector<HTMLElement>(
+      ".mobile-menu__footer"
+    );
+
+
+  /* =========================================================
+     INITIAL GSAP STATE
+  ========================================================= */
+
+  if (
+    geometry &&
+    geometryLines &&
+    intro &&
+    menuItems &&
+    footer
+  ) {
+
+    gsap.set(
+      geometry,
+      {
+        opacity: 0,
+        scale: 0.96,
+        rotation: -2
+      }
+    );
+
+
+    gsap.set(
+      geometryLines,
+      {
+        strokeDasharray: 900,
+        strokeDashoffset: 900
+      }
+    );
+
+
+    gsap.set(
+      intro,
+      {
+        opacity: 0,
+        y: 18
+      }
+    );
+
+
+    gsap.set(
+      menuItems,
+      {
+        opacity: 0,
+        y: 28
+      }
+    );
+
+
+    gsap.set(
+      footer,
+      {
+        opacity: 0,
+        y: 12
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     OPEN / CLOSE
+  ========================================================= */
+
+  if (
+    menu &&
+    openButton
+  ) {
+
     const openMenu = () => {
-      menu.setAttribute("aria-hidden", "false");
-      openButton.setAttribute("aria-expanded", "true");
-      document.body.classList.add("menu-open");
 
-      closeButton.focus();
+      menu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      openButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      openButton.classList.add(
+        "is-open"
+      );
+
+
+      document.body.classList.add(
+        "menu-open"
+      );
+
+
+      const timeline =
+        gsap.timeline({
+          defaults: {
+            ease:
+              "power3.out"
+          }
+        });
+
+
+      timeline.to(
+        menu,
+        {
+          visibility:
+            "visible",
+
+          opacity:
+            1,
+
+          y:
+            0,
+
+          duration:
+            0.32
+        }
+      );
+
+
+      timeline.to(
+        geometry,
+        {
+          opacity:
+            0.075,
+
+          scale:
+            1,
+
+          rotation:
+            0,
+
+          duration:
+            0.85
+        },
+        "-=0.12"
+      );
+
+
+      timeline.to(
+        geometryLines,
+        {
+          strokeDashoffset:
+            0,
+
+          duration:
+            1.05,
+
+          stagger:
+            0.035,
+
+          ease:
+            "power2.out"
+        },
+        "-=0.7"
+      );
+
+
+      timeline.to(
+        intro,
+        {
+          opacity:
+            1,
+
+          y:
+            0,
+
+          duration:
+            0.42
+        },
+        "-=0.72"
+      );
+
+
+      timeline.to(
+        menuItems,
+        {
+          opacity:
+            1,
+
+          y:
+            0,
+
+          duration:
+            0.48,
+
+          stagger:
+            0.065
+        },
+        "-=0.22"
+      );
+
+
+      timeline.to(
+        footer,
+        {
+          opacity:
+            1,
+
+          y:
+            0,
+
+          duration:
+            0.38
+        },
+        "-=0.25"
+      );
+
     };
+
 
     const closeMenu = () => {
-      menu.setAttribute("aria-hidden", "true");
-      openButton.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("menu-open");
 
-      openButton.focus();
+      const timeline =
+        gsap.timeline({
+          defaults: {
+            ease:
+              "power2.inOut"
+          },
+
+          onComplete: () => {
+
+            menu.setAttribute(
+              "aria-hidden",
+              "true"
+            );
+
+          }
+        });
+
+
+      timeline.to(
+        footer,
+        {
+          opacity:
+            0,
+
+          y:
+            10,
+
+          duration:
+            0.16
+        }
+      );
+
+
+      timeline.to(
+        menuItems,
+        {
+          opacity:
+            0,
+
+          y:
+            16,
+
+          duration:
+            0.2,
+
+          stagger:
+            0.02
+        },
+        "-=0.08"
+      );
+
+
+      timeline.to(
+        intro,
+        {
+          opacity:
+            0,
+
+          y:
+            10,
+
+          duration:
+            0.16
+        },
+        "-=0.1"
+      );
+
+
+      timeline.to(
+        geometry,
+        {
+          opacity:
+            0,
+
+          scale:
+            0.97,
+
+          rotation:
+            2,
+
+          duration:
+            0.28
+        },
+        "-=0.08"
+      );
+
+
+      timeline.to(
+        menu,
+        {
+          opacity:
+            0,
+
+          y:
+            -10,
+
+          duration:
+            0.28,
+
+          onStart: () => {
+
+            openButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            openButton.classList.remove(
+              "is-open"
+            );
+
+            document.body.classList.remove(
+              "menu-open"
+            );
+
+          }
+        },
+        "-=0.16"
+      );
+
+
+      if (
+        foodToggle &&
+        foodSubmenu
+      ) {
+
+        foodToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+
+        foodSubmenu.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+
+        foodToggle.classList.remove(
+          "is-open"
+        );
+
+      }
+
     };
 
-    openButton.addEventListener("click", openMenu);
-    closeButton.addEventListener("click", closeMenu);
 
-    menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
+    /* =========================================================
+       MENU BUTTON
+    ========================================================= */
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && menu.getAttribute("aria-hidden") === "false") {
-        closeMenu();
+    openButton.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          menu.getAttribute(
+            "aria-hidden"
+          ) === "false";
+
+
+        if (isOpen) {
+
+          closeMenu();
+
+        } else {
+
+          openMenu();
+
+        }
+
       }
-    });
+    );
+
+
+    /* =========================================================
+       FOOD
+    ========================================================= */
+
+    if (
+      foodToggle &&
+      foodSubmenu
+    ) {
+
+      foodToggle.addEventListener(
+        "click",
+        () => {
+
+          const isOpen =
+            foodToggle.getAttribute(
+              "aria-expanded"
+            ) === "true";
+
+
+          foodToggle.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+          );
+
+
+          foodSubmenu.setAttribute(
+            "aria-hidden",
+            String(isOpen)
+          );
+
+
+          foodToggle.classList.toggle(
+            "is-open",
+            !isOpen
+          );
+
+
+          if (!isOpen) {
+
+            gsap.fromTo(
+              foodSubmenu.querySelectorAll(
+                "li"
+              ),
+              {
+                opacity:
+                  0,
+
+                y:
+                  -10
+              },
+              {
+                opacity:
+                  1,
+
+                y:
+                  0,
+
+                duration:
+                  0.32,
+
+                stagger:
+                  0.06,
+
+                ease:
+                  "power3.out"
+              }
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       HOVER
+    ========================================================= */
+
+    menuItems?.forEach(
+      (item) => {
+
+        item.addEventListener(
+          "mouseenter",
+          () => {
+
+            menuItems.forEach(
+              (otherItem) => {
+
+                if (
+                  otherItem !== item
+                ) {
+
+                  gsap.to(
+                    otherItem,
+                    {
+                      opacity:
+                        0.38,
+
+                      duration:
+                        0.24,
+
+                      ease:
+                        "power2.out"
+                    }
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+
+        item.addEventListener(
+          "mouseleave",
+          () => {
+
+            menuItems.forEach(
+              (otherItem) => {
+
+                gsap.to(
+                  otherItem,
+                  {
+                    opacity:
+                      1,
+
+                    duration:
+                      0.28,
+
+                    ease:
+                      "power2.out"
+                  }
+                );
+
+              }
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       CLOSE ON NAVIGATION
+    ========================================================= */
+
+    menu
+      .querySelectorAll<HTMLAnchorElement>(
+        "a"
+      )
+      .forEach(
+        (link) => {
+
+          link.addEventListener(
+            "click",
+            () => {
+
+              closeMenu();
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =========================================================
+       ESCAPE
+    ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          menu.getAttribute(
+            "aria-hidden"
+          ) === "false"
+        ) {
+
+          closeMenu();
+
+        }
+
+      }
+    );
+
   }
+
 </script>
 
-<style>
-  .mobile-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    background: var(--color-cream);
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(-8px);
-    transition:
-      opacity var(--duration-base) var(--ease-standard),
-      transform var(--duration-base) var(--ease-standard),
-      visibility var(--duration-base);
-  }
 
-  .mobile-menu[aria-hidden="false"] {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-  }
+<style>
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.mobile-menu {
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    50;
+
+  overflow:
+    hidden;
+
+  background:
+    #111111;
+
+  color:
+    #f5f2ea;
+
+  visibility:
+    hidden;
+
+  opacity:
+    0;
+
+  transform:
+    translateY(-10px);
+
+  pointer-events:
+    none;
+
+}
+
+
+.mobile-menu[aria-hidden="false"] {
+
+  pointer-events:
+    auto;
+
+}
+
+
+/* =========================================================
+   GEOMETRY
+========================================================= */
+
+.mobile-menu__geometry {
+
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  left:
+    50%;
+
+  width:
+    min(
+      650px,
+      90vw
+    );
+
+  aspect-ratio:
+    1;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  pointer-events:
+    none;
+
+}
+
+
+.mobile-menu__geometry svg {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+}
+
+
+.mobile-menu__geometry-line {
+
+  stroke:
+    #c49a4d;
+
+  stroke-width:
+    1;
+
+  opacity:
+    0.45;
+
+}
+
+
+.mobile-menu__geometry-line--accent {
+
+  stroke:
+    #c49a4d;
+
+  stroke-width:
+    1.5;
+
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.mobile-menu__inner {
+
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  height:
+    100%;
+
+  padding:
+    1.2rem
+    var(--mobile-gutter);
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.mobile-menu__header {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  min-height:
+    52px;
+
+}
+
+
+.mobile-menu__brand {
+
+  color:
+    #f5f2ea;
+
+  font-size:
+    1.25rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    -0.045em;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.mobile-menu__content {
+
+  display:
+    flex;
+
+  flex:
+    1;
+
+  flex-direction:
+    column;
+
+  /*
+    Subimos ligeramente el contenido
+    para eliminar el exceso de espacio
+  */
+
+  justify-content:
+    flex-start;
+
+  padding-top:
+    clamp(
+      7rem,
+      17vh,
+      11rem
+    );
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.mobile-menu__intro {
+
+  margin-bottom:
+    1.45rem;
+
+}
+
+
+.mobile-menu__intro span {
+
+  display:
+    block;
+
+  margin-bottom:
+    0.3rem;
+
+  color:
+    #c49a4d;
+
+  font-size:
+    0.52rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.28em;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+.mobile-menu__intro p {
+
+  margin:
+    0;
+
+  color:
+    rgba(
+      245,
+      242,
+      234,
+      0.42
+    );
+
+  font-size:
+    0.62rem;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.mobile-menu__links {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    0.65rem;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  list-style:
+    none;
+
+}
+
+
+.mobile-menu__item {
+
+  position:
+    relative;
+
+}
+
+
+/* =========================================================
+   MAIN LINKS
+========================================================= */
+
+.mobile-menu__main-link,
+.mobile-menu__food-toggle {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  width:
+    100%;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    #f5f2ea;
+
+  font-family:
+    inherit;
+
+  /*
+    Más presencia tipográfica
+  */
+
+  font-size:
+    clamp(
+      2.35rem,
+      10vw,
+      4rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    0.92;
+
+  letter-spacing:
+    -0.06em;
+
+  text-align:
+    left;
+
+  text-decoration:
+    none;
+
+  cursor:
+    pointer;
+
+}
+
+
+.mobile-menu__link-label {
+
+  display:
+    inline-block;
+
+  transition:
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    color 250ms ease;
+
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+.mobile-menu__arrow {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex:
+    0 0 auto;
+
+  margin-left:
+    1rem;
+
+  color:
+    rgba(
+      196,
+      154,
+      77,
+      0.72
+    );
+
+  font-size:
+    1rem;
+
+  opacity:
+    0.72;
+
+  transform:
+    translateX(0);
+
+  transition:
+    opacity 250ms ease,
+
+    color 250ms ease,
+
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.mobile-menu__main-link:hover
+.mobile-menu__link-label {
+
+  transform:
+    translateX(8px);
+
+}
+
+
+.mobile-menu__main-link:hover
+.mobile-menu__arrow {
+
+  opacity:
+    1;
+
+  color:
+    #c49a4d;
+
+  transform:
+    translateX(6px);
+
+}
+
+
+/* =========================================================
+   BOOKING CTA
+========================================================= */
+
+.mobile-menu__main-link--booking {
+
+  position:
+    relative;
+
+  margin-top:
+    0.2rem;
+
+  padding-bottom:
+    0.45rem;
+
+}
+
+
+.mobile-menu__main-link--booking::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  bottom:
+    0;
+
+  width:
+    100%;
+
+  height:
+    1px;
+
+  background:
+    rgba(
+      196,
+      154,
+      77,
+      0.42
+    );
+
+  transform:
+    scaleX(0.12);
+
+  transform-origin:
+    left;
+
+  transition:
+    transform 500ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    background 250ms ease;
+
+}
+
+
+.mobile-menu__main-link--booking
+.mobile-menu__arrow {
+
+  opacity:
+    1;
+
+  color:
+    #c49a4d;
+
+  font-size:
+    1.25rem;
+
+}
+
+
+.mobile-menu__main-link--booking:hover::after {
+
+  transform:
+    scaleX(1);
+
+  background:
+    #c49a4d;
+
+}
+
+
+.mobile-menu__main-link--booking:hover
+.mobile-menu__link-label {
+
+  color:
+    #c49a4d;
+
+}
+
+
+/* =========================================================
+   FOOD ICON
+========================================================= */
+
+.mobile-menu__food-icon {
+
+  position:
+    relative;
+
+  flex:
+    0 0 auto;
+
+  width:
+    2.3rem;
+
+  height:
+    2.3rem;
+
+  margin-left:
+    1rem;
+
+  border:
+    1px solid
+    rgba(
+      196,
+      154,
+      77,
+      0.7
+    );
+
+  border-radius:
+    50%;
+
+  transition:
+    background 300ms ease,
+
+    border-color 300ms ease,
+
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.mobile-menu__food-icon::before,
+.mobile-menu__food-icon::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  left:
+    50%;
+
+  width:
+    0.85rem;
+
+  height:
+    1px;
+
+  background:
+    #c49a4d;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  transition:
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    background 250ms ease;
+
+}
+
+
+.mobile-menu__food-icon::after {
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotate(90deg);
+
+}
+
+
+.mobile-menu__food-toggle.is-open
+.mobile-menu__food-icon {
+
+  background:
+    #c49a4d;
+
+  border-color:
+    #c49a4d;
+
+  transform:
+    rotate(90deg);
+
+}
+
+
+.mobile-menu__food-toggle.is-open
+.mobile-menu__food-icon::before,
+.mobile-menu__food-toggle.is-open
+.mobile-menu__food-icon::after {
+
+  background:
+    #111111;
+
+}
+
+
+.mobile-menu__food-toggle.is-open
+.mobile-menu__food-icon::after {
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotate(90deg)
+    scaleX(0);
+
+}
+
+
+/* =========================================================
+   FOOD SUBMENU
+========================================================= */
+
+.mobile-menu__submenu {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    0.5rem;
+
+  max-height:
+    0;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  overflow:
+    hidden;
+
+  list-style:
+    none;
+
+  opacity:
+    0;
+
+  transform:
+    translateY(-8px);
+
+  transition:
+    max-height 450ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    margin 450ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    opacity 250ms ease,
+
+    transform 450ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.mobile-menu__food-toggle.is-open
++ .mobile-menu__submenu {
+
+  max-height:
+    140px;
+
+  margin-top:
+    0.8rem;
+
+  opacity:
+    1;
+
+  transform:
+    translateY(0);
+
+}
+
+
+.mobile-menu__submenu a {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  width:
+    100%;
+
+  max-width:
+    340px;
+
+  padding-left:
+    1.2rem;
+
+  color:
+    rgba(
+      245,
+      242,
+      234,
+      0.55
+    );
+
+  font-size:
+    clamp(
+      1.05rem,
+      5vw,
+      1.35rem
+    );
+
+  font-weight:
+    400;
+
+  letter-spacing:
+    -0.02em;
+
+  text-decoration:
+    none;
+
+  transition:
+    color 200ms ease,
+
+    transform 300ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+}
+
+
+.mobile-menu__submenu a:hover {
+
+  color:
+    #f5f2ea;
+
+  transform:
+    translateX(8px);
+
+}
+
+
+.mobile-menu__submenu a span:last-child {
+
+  color:
+    #c49a4d;
+
+  font-size:
+    0.9rem;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.mobile-menu__footer {
+
+  padding-bottom:
+    0.5rem;
+
+}
+
+
+.mobile-menu__divider {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.75rem;
+
+  margin-bottom:
+    1rem;
+
+}
+
+
+.mobile-menu__divider span:first-child,
+.mobile-menu__divider span:last-child {
+
+  flex:
+    1;
+
+  height:
+    1px;
+
+  background:
+    rgba(
+      245,
+      242,
+      234,
+      0.22
+    );
+
+}
+
+
+.mobile-menu__symbol {
+
+  color:
+    #c49a4d;
+
+  font-size:
+    0.75rem;
+
+}
+
+
+.mobile-menu__footer-info {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+}
+
+
+.mobile-menu__footer-info a,
+.mobile-menu__footer-info span {
+
+  color:
+    rgba(
+      245,
+      242,
+      234,
+      0.45
+    );
+
+  font-size:
+    0.58rem;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+
+  text-decoration:
+    none;
+
+}
+
+
+.mobile-menu__footer-info a:hover {
+
+  color:
+    #c49a4d;
+
+}
+
+
+/* =========================================================
+   BODY LOCK
+========================================================= */
+
+body.menu-open {
+
+  overflow:
+    hidden;
+
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+:global(.menu-button) {
+
+  position:
+    relative;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    48px;
+
+  height:
+    48px;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--color-white);
+
+  cursor:
+    pointer;
+
+  z-index:
+    100;
+
+}
+
+
+:global(.menu-button span) {
+
+  position:
+    absolute;
+
+  width:
+    22px;
+
+  height:
+    1px;
+
+  background:
+    currentColor;
+
+  transform-origin:
+    center;
+
+  transition:
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    background-color 300ms ease;
+
+}
+
+
+:global(.menu-button span:first-child) {
+
+  transform:
+    translateY(-4px);
+
+}
+
+
+:global(.menu-button span:last-child) {
+
+  transform:
+    translateY(4px);
+
+}
+
+
+:global(.menu-button.is-open) {
+
+  color:
+    #c49a4d;
+
+}
+
+
+:global(.menu-button.is-open span:first-child) {
+
+  transform:
+    rotate(45deg);
+
+}
+
+
+:global(.menu-button.is-open span:last-child) {
+
+  transform:
+    rotate(-45deg);
+
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 768px) {
 
   .mobile-menu__inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1rem var(--mobile-gutter);
+
+    padding:
+      1.5rem
+      3rem
+      1.25rem;
+
   }
 
-  .mobile-menu__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 64px;
-  }
-
-  .mobile-menu__brand {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-  }
-
-  .mobile-menu__close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--color-dark);
-    cursor: pointer;
-  }
-
-  .mobile-menu__close span {
-    position: absolute;
-    width: 22px;
-    height: 1px;
-    background: currentColor;
-  }
-
-  .mobile-menu__close span:first-child {
-    transform: rotate(45deg);
-  }
-
-  .mobile-menu__close span:last-child {
-    transform: rotate(-45deg);
-  }
 
   .mobile-menu__content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    padding-bottom: 4rem;
+
+    width:
+      min(
+        900px,
+        calc(100% - 4rem)
+      );
+
+    margin:
+      0 auto;
+
+    padding-top:
+      clamp(
+        5rem,
+        12vh,
+        8rem
+      );
+
   }
+
+
+  .mobile-menu__intro {
+
+    margin-bottom:
+      1.8rem;
+
+  }
+
 
   .mobile-menu__links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+
+    gap:
+      0.5rem;
+
   }
 
-  .mobile-menu__links a {
-    display: block;
-    font-size: clamp(2rem, 10vw, 3rem);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.04em;
+
+  .mobile-menu__main-link,
+  .mobile-menu__food-toggle {
+
+    font-size:
+      clamp(
+        3rem,
+        5vw,
+        5rem
+      );
+
   }
 
-  .mobile-menu__divider {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 3rem 0;
+
+  .mobile-menu__food-icon {
+
+    width:
+      3rem;
+
+    height:
+      3rem;
+
   }
 
-  .mobile-menu__divider span:first-child,
-  .mobile-menu__divider span:last-child {
-    flex: 1;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.35;
+
+  .mobile-menu__submenu {
+
+    padding-left:
+      0.5rem;
+
   }
 
-  .mobile-menu__symbol {
-    font-size: 0.9rem;
-    line-height: 1;
+
+  .mobile-menu__submenu a {
+
+    max-width:
+      450px;
+
+    font-size:
+      1.4rem;
+
   }
 
-  .mobile-menu__booking {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 54px;
-    border: 1px solid var(--color-brown);
-    border-radius: var(--radius-button);
-    background: var(--color-brown);
-    color: var(--color-cream);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+
+  .mobile-menu__footer {
+
+    padding-bottom:
+      0.5rem;
+
   }
 
-  .mobile-menu__instagram {
-    margin-top: 1.5rem;
-    text-align: center;
-    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .mobile-menu__content {
+
+    padding-top:
+      6rem;
+
   }
 
-  body.menu-open {
-    overflow: hidden;
+
+  .mobile-menu__links {
+
+    gap:
+      0.55rem;
+
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .mobile-menu {
-      transition: none;
-    }
+
+  .mobile-menu__main-link,
+  .mobile-menu__food-toggle {
+
+    font-size:
+      2.2rem;
+
   }
+
+
+  .mobile-menu__intro {
+
+    margin-bottom:
+      1.1rem;
+
+  }
+
+
+  .mobile-menu__food-icon {
+
+    width:
+      2.1rem;
+
+    height:
+      2.1rem;
+
+  }
+
+
+  .mobile-menu__footer {
+
+    padding-bottom:
+      0;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .mobile-menu,
+  .mobile-menu__main-link,
+  .mobile-menu__food-icon,
+  .mobile-menu__submenu,
+  .mobile-menu__submenu a,
+  :global(.menu-button),
+  :global(.menu-button span) {
+
+    transition:
+      none;
+
+  }
+
+}
+
 </style>
