@@ -1,5 +1,9 @@
 :root {
-  /* COLORS Moche Visual System v0.1 */
+  /* =========================================
+     MOCHE VISUAL SYSTEM
+  ========================================= */
+
+  /* COLORS */
 
   --color-cream: #f3f0e4;
   --color-sand: #e6ddcc;
@@ -12,9 +16,65 @@
   --color-moche-gold: #b08a45;
   --color-moche-white: #f5f2ea;
   --color-moche-black: #0c0c0b;
-  
 
-  /* SPACING */
+
+  /* =========================================
+     TYPOGRAPHY
+  ========================================= */
+
+  /*
+   * Modern editorial sans for large brand
+   * moments, headings and display type.
+   *
+   * Instrument Sans is the current working
+   * font. We can replace this token later with
+   * a licensed typeface such as Neue Montreal
+   * or Söhne without touching components.
+   */
+  --font-display:
+    "Instrument Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  /*
+   * Neutral, highly readable sans for body
+   * copy, navigation and interface elements.
+   */
+  --font-body:
+    "DM Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  --font-mono:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  /* Display weights */
+  --weight-display-regular: 400;
+  --weight-display-medium: 500;
+  --weight-display-semibold: 600;
+
+  /* Body weights */
+  --weight-body-regular: 400;
+  --weight-body-medium: 500;
+  --weight-body-semibold: 600;
+
+  /* Tracking */
+  --tracking-tight: -0.06em;
+  --tracking-display: -0.04em;
+  --tracking-normal: 0;
+  --tracking-label: 0.14em;
+
+
+  /* =========================================
+     SPACING
+  ========================================= */
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -27,24 +87,41 @@
   --space-9: 6rem;
   --space-10: 8rem;
 
-  /* BORDERS */
+
+  /* =========================================
+     BORDERS & RADII
+  ========================================= */
 
   --border-width: 1px;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-button: 999px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
 
-  /* LAYOUT */
+  /*
+   * Moche uses restrained, editorial shapes.
+   * Avoid the generic pill-button treatment.
+   */
+  --radius-button: 0;
+
+
+  /* =========================================
+     LAYOUT
+  ========================================= */
 
   --content-width: 1200px;
   --mobile-gutter: 1rem;
+  --desktop-gutter: 3rem;
 
-  /* MOTION */
+
+  /* =========================================
+     MOTION
+  ========================================= */
 
   --duration-fast: 180ms;
   --duration-base: 300ms;
   --duration-slow: 600ms;
+  --duration-cinematic: 1400ms;
 
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
 }
