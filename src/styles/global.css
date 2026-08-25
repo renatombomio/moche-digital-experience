@@ -40,6 +40,20 @@ a {
   text-decoration: none;
 }
 
+/* Decorative text arrows are intentionally hidden globally.
+   Navigation and CTAs remain fully clickable without relying on
+   platform-dependent arrow glyphs that can render as emoji. */
+.food-card__discover > span,
+.food-experience__menu-button > span:last-child,
+.pisco-card__discover > span,
+.pisco-experience__menu-button > span:last-child,
+.contact__instagram > span,
+.contact__map-link > span,
+.reviews__link > span:last-child,
+.reviews__bottom-label > span {
+  display: none;
+}
+
 ::selection {
   background: var(--color-clay);
   color: var(--color-cream);
